@@ -26,15 +26,12 @@ public class GlobalExceptionHandler {
         
     }
 
-<<<<<<< Updated upstream
-=======
 
     @ExceptionHandler(InsufficientPermissionsException.class)
     public ResponseEntity<String> handlePermissions(InsufficientPermissionsException ex) {
         return ResponseEntity.status(HttpStatus.FORBIDDEN).body(ex.getMessage());
     }
 
->>>>>>> Stashed changes
     @ExceptionHandler(PrecioNegativoException.class)
     public ResponseEntity<String> manejarPrecioNegativo(PrecioNegativoException ex) {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
@@ -49,12 +46,9 @@ public class GlobalExceptionHandler {
     public ResponseEntity<String> manejarErroresGenerales(Exception ex) {
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error interno: " + ex.getMessage());
     }
-<<<<<<< Updated upstream
-=======
 
     @ExceptionHandler(UsuarioNotFoundException.class)
     public ResponseEntity<String> manejarUsuarioNoEncontrado(UsuarioNotFoundException ex) {
     return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
 }
->>>>>>> Stashed changes
 }
