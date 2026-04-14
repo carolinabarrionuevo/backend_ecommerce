@@ -6,7 +6,7 @@ package com.uade.ecommerce.model;
  * ADMIN: tiene acceso completo al sistema, puede gestionar usuarios y productos
  */
 public enum Role {
-    USER,   // Usuario regular que puede comprar y vender productos
+    USER,   // Usuario regular que puede comprar  productos
     ADMIN,   // Administrador con acceso total al sistema
     VENDEDOR  // Usuario que puede publicar productos para vender
 }
