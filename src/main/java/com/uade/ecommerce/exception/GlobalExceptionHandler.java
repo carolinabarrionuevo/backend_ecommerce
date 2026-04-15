@@ -22,6 +22,11 @@ public class GlobalExceptionHandler {
         
     }
 
+    @ExceptionHandler(InsufficientPermissionsException.class)
+    public ResponseEntity<String> handlePermissions(InsufficientPermissionsException ex) {
+        return ResponseEntity.status(HttpStatus.FORBIDDEN).body(ex.getMessage());
+    }
+
     @ExceptionHandler(PrecioNegativoException.class)
     public ResponseEntity<String> manejarPrecioNegativo(PrecioNegativoException ex) {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
@@ -42,5 +47,8 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
     }
 
-
+    @ExceptionHandler(UsuarioNotFoundException.class)
+    public ResponseEntity<String> manejarUsuarioNoEncontrado(UsuarioNotFoundException ex) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
+    }
 }
