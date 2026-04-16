@@ -1,6 +1,9 @@
 package com.uade.ecommerce.model;
 
-
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 
@@ -27,7 +30,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.*;
 
-@Getter @Setter
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -36,6 +40,7 @@ public class Usuario implements UserDetails{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_usuario;
+
     private String nombre;
     private String apellido;
     @Column(unique = true)
