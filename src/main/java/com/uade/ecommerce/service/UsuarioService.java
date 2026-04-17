@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.uade.ecommerce.dto.UsuarioRegisterDTO;
+import com.uade.ecommerce.dto.request.UsuarioRegisterDTO;
 import com.uade.ecommerce.exception.UsuarioNotFoundException;
 import com.uade.ecommerce.model.Usuario;
 import com.uade.ecommerce.repository.UsuarioRepository;
@@ -15,11 +15,20 @@ public class UsuarioService {
     @Autowired
     private UsuarioRepository repo;
 
+//    public List<Usuario> getUsuarios() {
+//        return repo.findAll();
+//    }    
+
     public List<UsuarioRegisterDTO> getUsuarios() {
         return repo.findAll().stream()
                 .map(this::convertToDTO)
                 .toList();
     }
+
+//    public Usuario crearUsuario(Usuario usuario) {
+//        repo.save(usuario);
+//        return usuario;
+//    }    
 
     public UsuarioRegisterDTO crearUsuario(UsuarioRegisterDTO dto) {
         // 1. Pasamos del DTO a la Entidad (lo que se guarda en MySQL)

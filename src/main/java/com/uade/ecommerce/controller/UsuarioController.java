@@ -12,16 +12,15 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.uade.ecommerce.dto.UsuarioRegisterDTO;
+import com.uade.ecommerce.dto.request.UsuarioRegisterDTO;
 import com.uade.ecommerce.model.Usuario;
 import com.uade.ecommerce.service.UsuarioService;
 
 @RestController
-@RequestMapping("/usuarios")
+@RequestMapping("/api/usuarios")
 public class UsuarioController {
     @Autowired
     private UsuarioService usuarioService;
-
 
 //    @GetMapping()
 //    public List<Usuario> getUsuarios() {
@@ -55,5 +54,4 @@ public class UsuarioController {
         usuarioService.eliminarUsuario(id);
         return ResponseEntity.noContent().build(); // Retorna 204 No Content
     }
-
 }
