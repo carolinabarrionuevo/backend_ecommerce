@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 
@@ -58,6 +59,20 @@ public class ProductoController {
         prodService.eliminarProducto(id);
         return ResponseEntity.noContent().build(); // Retorna 204 No Content
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<ProductoResponse> updateProducto(@PathVariable Long id, @RequestBody ProductoRequest productoRequest) {
+    // Le pasamos el ID y el DTO al service
+    ProductoResponse actualizado = prodService.modificarProducto(id, productoRequest);
+    
+    if (actualizado != null) {
+        return ResponseEntity.ok(actualizado); // 200 OK si lo encontró y actualizó
+    } else {
+        return ResponseEntity.notFound().build(); // 404 si el ID no existía
+    }
+}
+
+
 
 
 }

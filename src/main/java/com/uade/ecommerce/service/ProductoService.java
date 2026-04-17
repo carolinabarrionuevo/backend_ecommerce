@@ -57,6 +57,21 @@ public class ProductoService {
         }
     }
 
+    public ProductoResponse updateProducto(Long id, ProductoRequest request) {
+        // 1. Buscamos si existe
+        Producto productoExistente = repo.findById(id)
+                .orElseThrow(() -> new ProductoNotFoundException("No existe el producto con el id: " + id));
+
+        // 2. Mapeamos los datos del DTO a la Entidad
+        productoExistente.setNombre(request.getNombre());
+        productoExistente.setDescripcion(request.getDescripcion());
+        productoExistente.setPrecio(request.getPrecio());
+        
+        // 3. Guardamos y convertimos a respuesta
+        Producto actualizado = repo.save(productoExistente);
+        return convertToDTO(actualizado);
+    }
+
     private ProductoResponse convertToDTO(Producto p) {
         String nombreCat = "Sin categoría";
         if (!p.getCategorias().isEmpty()) {
