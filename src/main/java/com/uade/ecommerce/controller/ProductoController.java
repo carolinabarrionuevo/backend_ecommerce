@@ -63,7 +63,7 @@ public class ProductoController {
     @PutMapping("/{id}")
     public ResponseEntity<ProductoResponse> updateProducto(@PathVariable Long id, @RequestBody ProductoRequest productoRequest) {
     // Le pasamos el ID y el DTO al service
-    ProductoResponse actualizado = prodService.modificarProducto(id, productoRequest);
+    ProductoResponse actualizado = prodService.updateProducto(id, productoRequest);
     
     if (actualizado != null) {
         return ResponseEntity.ok(actualizado); // 200 OK si lo encontró y actualizó
