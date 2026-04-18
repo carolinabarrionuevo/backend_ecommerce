@@ -1,11 +1,14 @@
 package com.uade.ecommerce.dto.request;
 
-import lombok.Data;
 import java.util.List;
 
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter @Setter
 @Data
-public class PedidoRequest { //DTO para crear un nuevo pedido
-    private List<ItemPedidoRequest> items; // Lista de productos y cantidades
+public class PedidoRequest {
+    private Long id_usuario;
+    private List<ItemPedidoRequest> items;
 }
-
-
