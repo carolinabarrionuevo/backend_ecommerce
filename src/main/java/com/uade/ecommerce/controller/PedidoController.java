@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.uade.ecommerce.dto.request.PedidoRequest;
 import com.uade.ecommerce.dto.response.PedidoResponse;
-import com.uade.ecommerce.model.Pedido;
 import com.uade.ecommerce.service.PedidoService;
 
 @RestController

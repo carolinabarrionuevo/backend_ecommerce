@@ -1,7 +1,9 @@
 package com.uade.ecommerce.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -31,8 +33,8 @@ public class Carrito {
     @JoinColumn(name = "usuario_id")
     private Usuario usuario;
 
-    @OneToMany(mappedBy = "carrito")
-    private List<ItemCarrito> items;
+    @OneToMany(mappedBy = "carrito", cascade = CascadeType.ALL)
+    private List<ItemCarrito> items = new ArrayList<>();
 
 
 }

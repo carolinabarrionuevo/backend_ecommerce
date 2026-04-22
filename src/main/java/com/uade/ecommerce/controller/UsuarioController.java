@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.uade.ecommerce.dto.request.UsuarioRegisterDTO;
-import com.uade.ecommerce.model.Usuario;
 import com.uade.ecommerce.service.UsuarioService;
 
 @RestController

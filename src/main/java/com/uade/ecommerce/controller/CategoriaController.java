@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.uade.ecommerce.dto.request.CategoriaRequest;
 import com.uade.ecommerce.dto.response.CategoriaResponse;
-import com.uade.ecommerce.model.Categoria;
 import com.uade.ecommerce.service.CategoriaService;
 
 @RestController
