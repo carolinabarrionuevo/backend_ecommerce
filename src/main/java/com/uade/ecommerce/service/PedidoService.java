@@ -1,7 +1,6 @@
 package com.uade.ecommerce.service;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,6 +12,8 @@ import com.uade.ecommerce.dto.request.ItemPedidoRequest;
 import com.uade.ecommerce.dto.request.PedidoRequest;
 import com.uade.ecommerce.dto.response.ItemPedidoResponse;
 import com.uade.ecommerce.dto.response.PedidoResponse;
+import com.uade.ecommerce.exception.ProductoNotFoundException;
+import com.uade.ecommerce.exception.UsuarioNotFoundException;
 import com.uade.ecommerce.model.LineaPedido;
 import com.uade.ecommerce.model.Pedido;
 import com.uade.ecommerce.model.Producto;
@@ -57,7 +58,7 @@ public class PedidoService {
         String email = SecurityContextHolder.getContext().getAuthentication().getName();
     
         Usuario usuario = usuarioRepo.findByEmail(email)
-                .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
+                .orElseThrow(() -> new UsuarioNotFoundException("Usuario no encontrado"));
 
 
         // 2. Creamos el objeto Pedido principal
@@ -71,7 +72,7 @@ public class PedidoService {
 
         for (ItemPedidoRequest itemReq : request.getItems()) {
             Producto p = productoRepo.findById(itemReq.getProductoId())
-                    .orElseThrow(() -> new RuntimeException("Producto no encontrado ID: " + itemReq.getProductoId()));
+                    .orElseThrow(() -> new ProductoNotFoundException(itemReq.getProductoId()));
 
             LineaPedido linea = new LineaPedido();
             linea.setProducto(p);
