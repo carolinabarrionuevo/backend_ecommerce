@@ -68,6 +68,11 @@ public class CarritoService {
     // logica para agregar item al carrito del usuario autenticado
     public CarritoResponse addItemToCart(ItemCarritoRequest request)  {
 
+        // 1. VALIDAR CANTIDAD (Nueva validación)
+        if (request.getCantidad() <= 0) {
+            throw new CantidadInvalidaException("La cantidad a agregar debe ser mayor a 0. Se recibió: " + request.getCantidad());
+        }
+
         //obtener usuario autenticado y su carrito
         Usuario usuario = getUsuarioAutenticado();
         Carrito carrito = usuario.getCarrito();
