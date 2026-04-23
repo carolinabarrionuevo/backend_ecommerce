@@ -6,6 +6,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -49,6 +50,9 @@ public class Usuario implements UserDetails{
 
     @OneToMany(mappedBy = "usuario", fetch = FetchType.LAZY)
     private List<Pedido> pedidos = new ArrayList<>();
+
+    @OneToOne(mappedBy = "usuario")
+    private Carrito carrito;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
