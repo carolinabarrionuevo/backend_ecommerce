@@ -226,6 +226,7 @@ public class CarritoService {
     private CarritoResponse convertToCarritoResponse(Carrito carrito) {
         return CarritoResponse.builder()
                 .items(carrito.getItems().stream().map(i -> ItemCarritoResponse.builder()
+                        .id(i.getId())
                         .id_producto(i.getProducto().getId_prod())
                         .cantidad(i.getCantidad())
                         .precioUnitario(i.getPrecioUnitario())
