@@ -40,7 +40,6 @@ public class SecurityConfig {
   @Bean
   public UserDetailsService userDetailsService() {
     return username -> usuarioRepository.findByEmail(username)
-        //TODO: ssanchez - capturar con globalexceptionhanlder @ControllerAdivce
         .orElseThrow(() -> new UsernameNotFoundException("User not found"));
   }
 

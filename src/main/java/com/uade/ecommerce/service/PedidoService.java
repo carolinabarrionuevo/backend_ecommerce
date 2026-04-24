@@ -36,6 +36,9 @@ public class PedidoService {
     @Autowired
     private ProductoRepository productoRepo;
 
+    @Autowired 
+    private ProductoService productoService;
+
 
 //    public List<Pedido> getPedidos() {
 //        return repo.findAll();
@@ -52,6 +55,7 @@ public class PedidoService {
 //        repo.save(pedido);
 //        return pedido;
 //    }    
+
 @Transactional
 public PedidoResponse crearPedido(PedidoRequest request) {
     // 1. Obtenemos el email del usuario logueado desde el contexto de Seguridad
@@ -73,7 +77,9 @@ public PedidoResponse crearPedido(PedidoRequest request) {
     for (ItemPedidoRequest itemReq : request.getItems()) {
         Producto p = productoRepo.findById(itemReq.getProductoId())
                 .orElseThrow(() -> new ProductoNotFoundException(itemReq.getProductoId()));
-
+        
+        productoService.descontarStock(p, itemReq.getCantidad()); // Descontamos el stock del producto
+        
         LineaPedido linea = new LineaPedido();
         linea.setProducto(p);
         linea.setCantidad(itemReq.getCantidad());
@@ -131,7 +137,8 @@ public PedidoResponse crearPedido(PedidoRequest request) {
                     .build()
             ).toList())
             .build();
-}
+    }
+
 
 
 }
