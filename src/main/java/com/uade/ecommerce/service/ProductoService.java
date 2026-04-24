@@ -101,6 +101,14 @@ public class ProductoService {
                 .categorias(nombresCategorias.isEmpty() ? List.of("Sin categoría") : nombresCategorias)
                 .build();
     }
+
+    public void descontarStock(Producto p, int cantidad) {
+        if (p.getStock() < cantidad) {
+            throw new IllegalArgumentException("No hay suficiente stock para el producto: " + p.getNombre());
+        }
+        p.setStock(p.getStock() - cantidad);
+        repo.save(p);
+    }
     
 
 
