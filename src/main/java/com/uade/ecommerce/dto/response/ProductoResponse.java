@@ -19,5 +19,7 @@ public class ProductoResponse { //DTO para representar la respuesta de un produc
     private double precio; // Precio del producto
     private int stock; // Stock/cantidad disponible del producto
     private List<String> categorias; // Lista de nombres de categorías a las que pertenece el producto (se asume que un producto puede pertenecer a varias categorías)
-
+    private String imagenUrl; // URL de la imagen del producto
+    private boolean freeShipping;
+    private boolean isPromo;
 }

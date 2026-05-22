@@ -19,4 +19,7 @@ public class ProductoRequest { //DTO para representar la solicitud de creación 
     private double precio; // Precio del producto que se va a crear o actualizar
     private int stock; // Stock/cantidad disponible del producto
     private List<Long> categoriaIds;
+    private String imagenUrl; // URL de la imagen del producto
+    private boolean freeShipping;
+    private boolean isPromo;
 }

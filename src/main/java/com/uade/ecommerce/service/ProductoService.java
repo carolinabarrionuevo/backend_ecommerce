@@ -31,6 +31,12 @@ public class ProductoService {
                 .toList();
     }
 
+    public ProductoResponse getProductoById(Long id) {
+        return repo.findById(id)
+                .map(this::convertToDTO)
+                .orElseThrow(() -> new ProductoNotFoundException("No existe el producto con el id: " + id));
+    }
+
 //    public Producto crearProducto(Producto producto) {
 //        repo.save(producto);
 //        return producto;
@@ -42,6 +48,9 @@ public class ProductoService {
         producto.setDescripcion(request.getDescripcion());
         producto.setPrecio(request.getPrecio());
         producto.setStock(request.getStock());
+        producto.setImagenUrl(request.getImagenUrl());
+        producto.setFreeShipping(request.isFreeShipping());
+        producto.setPromo(request.isPromo());
         
         // BUSCAMOS LAS CATEGORÍAS POR ID
         if (request.getCategoriaIds() != null && !request.getCategoriaIds().isEmpty()) {
@@ -79,6 +88,9 @@ public class ProductoService {
         productoExistente.setDescripcion(request.getDescripcion());
         productoExistente.setStock(request.getStock());
         productoExistente.setPrecio(request.getPrecio());
+        productoExistente.setImagenUrl(request.getImagenUrl());
+        productoExistente.setFreeShipping(request.isFreeShipping());
+        productoExistente.setPromo(request.isPromo());
         
         // 3. Guardamos y convertimos a respuesta
         Producto actualizado = repo.save(productoExistente);
@@ -99,6 +111,9 @@ public class ProductoService {
                 .stock(p.getStock())
                 // Si la lista está vacía, devolvemos una lista con "Sin categoría" o vacía
                 .categorias(nombresCategorias.isEmpty() ? List.of("Sin categoría") : nombresCategorias)
+                .imagenUrl(p.getImagenUrl())
+                .freeShipping(p.isFreeShipping())
+                .isPromo(p.isPromo())
                 .build();
     }
 
@@ -109,6 +124,8 @@ public class ProductoService {
         p.setStock(p.getStock() - cantidad);
         repo.save(p);
     }
+
+
     
 
 

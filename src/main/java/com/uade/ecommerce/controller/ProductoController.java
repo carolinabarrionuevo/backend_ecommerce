@@ -37,6 +37,12 @@ public class ProductoController {
         return ResponseEntity.ok(lista); // Retorna 200 OK
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<ProductoResponse> getProductoById(@PathVariable Long id) {
+        ProductoResponse producto = prodService.getProductoById(id);
+        return ResponseEntity.ok(producto);
+    }
+
 //    @PostMapping
 //    public Producto addProducto(@RequestBody Producto producto) {
 //        return prodService.crearProducto(producto);

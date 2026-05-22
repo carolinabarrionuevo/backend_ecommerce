@@ -29,6 +29,9 @@ public class Producto {
     private String descripcion;
     private double precio;
     private int stock;
+    private String imagenUrl;
+    private boolean freeShipping;
+    private boolean isPromo;
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
